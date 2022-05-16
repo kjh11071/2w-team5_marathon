@@ -1,0 +1,274 @@
+• x만큼 간격이 있는 n개의 숫자
+문제 설명
+함수 solution은 정수 x와 자연수 n을 입력 받아, x부터 시작해 x씩 증가하는 숫자를 n개 지니는 리스트를 리턴해야 합니다. 다음 제한 조건을 보고, 조건을 만족하는 함수, solution을 완성해주세요.
+제한 조건
+	• x는 -10000000 이상, 10000000 이하인 정수입니다.
+	• n은 1000 이하인 자연수입니다.
+입출력 예
+x	n	answer
+2	5	[2,4,6,8,10]
+4	3	[4,8,12]
+-4	2	[-4, -8]
+
+
+
+
+
+문제
+functionsolution(x,n){   //x는 시작할값과 x만큼 증가하는 값, n은 몇개를 출력하는지 나타냄
+varanswer =[];          //배열을 뜻함
+returnanswer;         // answer가 배열이니 배열형식으로 출력해주세요 라고 알수있음}
+풀이
+
+
+
+
+
+for문 부터 설명을 하자면 i을 선언후 1을 할당하여 우리가 n개만큼 출력을 할거니 n이하로 반복하라는 뜻이며 이때 한번 반복한뒤 i는 1씩 증가하라는 뜻이 담긴 for문이다.
+그리고 answer.push를 한 이유는 배열에 데이터값을 넣을때는 push를 이용하는것을 알아두자
+answer *= i 를 하시는 분이 없기를 바랍니다.
+
+
+다른 사람의 풀이
+function solution(x, n) {
+    var answer = [];
+    var cnt = 0;
+​
+    while(cnt<n) {
+        cnt++;
+        answer.push(x*cnt);
+    }
+​
+    return answer;
+}
+
+부족한 금액 계산하기
+
+문제설명
+새로 생긴 놀이기구는 인기가 매우 많아 줄이 끊이질 않습니다. 
+이 놀이기구의 원래 이용료는 price원 인데, 놀이기구를 N 번 째 이용한다면
+원래 이용료의 N배를 받기로 하였습니다. 
+즉, 처음 이용료가 100이었다면 2번째에는 200, 3번째에는 300으로 요금이 인상됩니다.
+놀이기구를 count번 타게 되면 현재 자신이 가지고 있는 금액에서 
+얼마가 모자라는지를 return 하도록 solution 함수를 완성하세요.
+단, 금액이 부족하지 않으면 0을 return 하세요.
+
+제한사항
+	• 놀이기구의 이용료 price : 1 ≤ price ≤ 2,500, price는 자연수
+	• 처음 가지고 있던 금액 money : 1 ≤ money ≤ 1,000,000,000, money는 자연수
+	• 놀이기구의 이용 횟수 count : 1 ≤ count ≤ 2,500, count는 자연수
+	
+입출력 예시
+price	money	count	result
+3	20	4	10
+			
+입출력 예시 설명
+입출력 예 #1
+이용금액이 3인 놀이기구를 4번 타고 싶은 고객이 현재 가진 금액이 20이라면, 총 필요한 놀이기구의 이용 금액은 30 (= 3+6+9+12) 이 되어 10만큼 부족하므로 10을 return 합니다.
+
+문제풀이
+function solution(price,money,count) {
+  let total_price =0;
+for (let i =0;i <= count; i++) { 
+         total_price +=price *i;
+}
+//     console.log(total_price);
+ return money > total_price ? 0 : total_price -money;
+}
+풀이 방법
+일단 문제를 보고 삼항연산자 써서 결과값을 return 하면 되겠구나! 싶었다
+total_price 라는 변수를 하나 만들어주고, for 문을 이용해서 count 만큼 반복시켜주고 price * i 값을 total_price 에 넣어주었다
+그리고 삼항연산자를 이용해서 money 가 total_price 보다 클 때에는 0을 return, 작을 때에는 total_price - money를 return 하게 코드를 작성하였다.
+처음에 풀 때 total_price += price i 가 아니라 price count를 넣어서 왜 자꾸 값이 크게 나오지 ㅠㅠ 하고 당황했는데 count가 아니라 i를 넣었어야 되는 거였다 ; 해결!
+
+다른 사람의 코드
+function solution(price,money,count) {
+const tmp = price  * count  * (count +1) / 2-money;
+return tmp > 0 ? tmp : 0;
+}
+
+2016년
+
+✅문제
+2016년 1월 1일은 금요일입니다. 2016년 a월 b일은 무슨 요일일까요? 두 수 a ,b를 입력받아 2016년 a월 b일이 무슨 요일인지 리턴하는 함수, solution을 완성하세요. 요일의 이름은 일요일부터 토요일까지 각각
+SUN,MON,TUE,WED,THU,FRI,SAT
+입니다. 예를 들어 a=5, b=24라면 5월 24일은 화요일이므로 문자열 "TUE"를 반환하세요.
+
+❕ 제한사항
+	• 2016년은 윤년입니다.
+	• 2016년 a월 b일은 실제로 있는 날입니다. (13월 26일이나 2월 45일같은 날짜는 주어지지 않습니다)
+	
+🎹📢입출력 예제
+
+
+✍풀어보기
+Function solution(a,b){
+Return newDate(2016,a-1,b).toString().slice(0,3).toUpperCase();
+}
+// 다른 방법
+Function
+solution(a,b){
+// 윤년은 2월이 29일까지 있고, 1년이 366일이다.
+// 4, 100, 400으로 나누어지는 년도는 윤년이다.
+Const weekToDay = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+Const leapYearMonths = [31,29,31,30,31,30,31,31,30,31,30,31]; 
+Let day = b+4; 
+// 1월 1일은 FRI, b가 1일 때 인덱스로는 5가 되어야한다.
+// 1월은 이전 월의 일수를 더하지 않음으로 a-1 조건으로 해야한다.
+For (let i =0; i <a-1; ++i){
+day += leapYearMonths[i];
+}
+Return weekToDay[day%7];
+}
+
+자바스크립트에서 지원하는 Date 클래스를 이용해서 손 쉽게 풀 수 있었다.
+Date의 매개변수는 다양하게 구성되어 있는데, 최대 밀리초 단위까지 구성되어있다.
+new Date(), new Date(value), new Date(dateString),
+new Date(year, monthIndex ...)
+*주의 할 점은 month는 일반 월이 아니라 인덱스로 되어있어서 1월이라면 0이 들어가야한다.
+2021년 8월 30일은 new Date(2021, 7, 30)으로 구성하면 된다.
+결과는 Mon Aug 30 2021 00:00:00 GMT+0900 (한국 표준시) 이다.
+dateString의 경우 'December 17, 1995 03:24:00' 또는 '1995-12-17T03:24:00' 같은 표기가 해당한다.
+클래스이기 때문에 toString() 함수를 통해서 문자열로 변환 시키고 0번째 부터 글자 3개를 잘라 대문자로 변환해서 리턴해서 원하는 결과를 얻었다.
+두번째 방법은 정말 원시적으로 푼 것인데, 윤년의 경우는 1년이 366로 평년보다 1일 많고, 1일 많은 것이 2월이라 29일까지 있기 때문에 검색을 통해서 월별 일수를 찾아서 배열에 담아야했다.
+그리고 2016년의 1월 1일의 경우 금요일이라고 했기 때문에, 인덱스가 5가 되어야해서 4를 더해주었다. 전 월의 일수를 더해주고 7로 나눈 나머지 값으로 인덱스를 구해 요일을 표시했다.
+
+🎈다른 사람의 풀이
+var solution=(m,d)=>(newDate('2016-'+m+'-'+d)+'').split(' ')[0].toUpperCase()
+// 또 다른 방법
+var solution=(_,$)=>(newDate(2016,--_,$)+'').toUpperCase().slice(0,3)
+첫 번째 풀이 방법은 new Date(dateString) 생성자를 이용한 방법이다.
+문자열로 만들어주고 구분자를 공백으로 나누어서 첫번째 인덱스의 문자열을 대문자로 변환시켜 반환한다.
+두 번째 풀이 방법은 new Date(year, monthIndex, day) 생성자를 이용한 방법이다.
+두 번째 매개변수가 Index라서 1을 빼서 넣어주고 있다. _와 $는 그냥 매개변수의 이름일 뿐이다. 가독성이 좋지 않아서 선호하지 않는 방법이다. 자바스크립트에서는 변수의 이름으로 허용하기 때문에 가능한 것이라서 다른 언어에서는 허용되지 않을 수 있다.
+
+나누어 떨어지는 숫자 배열
+
+문제 설명
+array의 각 element 중 divisor로 나누어 떨어지는 값을 오름차순으로 정렬한 배열을 반환하는 함수, solution을 작성해주세요.
+divisor로 나누어 떨어지는 element가 하나도 없다면 배열에 -1을 담아 반환하세요.
+
+제한 조건
+	• arr은 자연수를 담은 배열입니다.
+	• 정수 i, j에 대해 i ≠ j 이면 arr[i] ≠ arr[j] 입니다.
+	• divisor는 자연수입니다.
+	• array는 길이 1 이상인 배열입니다.
+
+입출력 예
+arr	divisor	return
+[5,9,7,10]	5	[5,10]
+[2,36,1,3]	1	[1,2,3,36]
+[3,2,6]	10	[-1]
+
+입출력 예 설명
+입출력 예 #1
+arr의 원소 중 5로 나누어 떨어지는 원소는 5와 10입니다. 따라서 [5, 10]을 리턴합니다.
+입출력 예 #2
+arr의 모든 원소는 1으로 나누어 떨어집니다. 원소를 오름차순으로 정렬해 [1, 2, 3, 36]을 리턴합니다.
+입출력 예 #3
+3, 2, 6은 10으로 나누어 떨어지지 않습니다. 나누어 떨어지는 원소가 없으므로 [-1]을 리턴합니다.
+
+풀이
+function solution(arr, divisor) {
+    var answer = [];
+    for(i=0; i<arr.length; i++) {
+      if(arr[i] % divisor == 0) {
+        answer.push(arr[i]);
+      }
+    }
+    if(answer.length == 0) {
+      answer.push(-1);
+    }
+    answer.sort((a,b) => a - b);
+    return answer;
+}
+
+해설
+배열을 divisor로 나눴을때 나오는 값이 0이면 나누어 떨어지는 숫자이다.
+마지막에 오름차순 처리만 해주면 비교적 간단하게 해결할 수 있다.
+
+내적
+
+문제 설명
+길이가 같은 두 1차원 정수 배열 a, b가 매개변수로 주어집니다. a와 b의 내적을 return 하도록 solution 함수를 완성해주세요.
+이때, a와 b의 내적은 a[0]b[0] + a[1]b[1] + ... + a[n-1]*b[n-1] 입니다. (n은 a, b의 길이)
+제한사항
+	• a, b의 길이는 1 이상 1,000 이하입니다.
+	• a, b의 모든 수는 -1,000 이상 1,000 이하입니다.
+입출력 예
+a	b	result
+[1,2,3,4]	[-3,-1,0,2]	3
+[-1,0,1]	[1,0,-1]	-2
+
+기본 solution 코드
+
+Function solution(a,b) {
+Var answer =1234567890; 
+Return answer;
+}
+문제 풀이
+
+//첫 번째 풀이
+function solution(a,b){
+var answer =0; 
+for(let i =0; i <a.length; i++) {
+answer += a[i]*b[i];
+}
+return answer;
+}
+
+//두 번째 풀이
+function solution(a,b) { 
+return (a.map((cur,i) => cur * b[i])).reduce((a,b)=>a +b);
+
+//map으로 a[i]*b[i] 하고 reduce로 모든 요소 합 구하기}
+
+풀이 설명
+문제 보고 역시 생각해내기 만만한 for문부터 돌렸다.
+그리고 array 2개의 요소들끼리 곱한다고 해서 .map을, array 요소의 모든 합이라고 해서 reduce를 생각해서 두 개 합쳐서 해결.
+사용 함수
+	• .map: 행렬의 덧셈의 다른 풀이 참고
+	• .reduce: 없는 숫자 더하기의 다른 풀이 참고
+
+문자열 내 p와 y의 개수
+
+문제설명
+대문자와 소문자가 섞여있는 문자열 s가 주어집니다.
+s에 'p'의 개수와 'y'의 개수를 비교해 같으면 True, 다르면 False를 return 하는 solution를 완성하세요.
+'p', 'y' 모두 하나도 없는 경우는 항상 True를 리턴합니다.
+단, 개수를 비교할 때 대문자와 소문자는 구별하지 않습니다.
+예를 들어 s가 "pPoooyY"면 true를 return하고 "Pyy"라면 false를 return합니다.
+ 
+주의사항
+• 문자열 s의 길이 : 50 이하의 자연수
+• 문자열 s는 알파벳으로만 이루어져 있습니다.
+입출력예시
+
+
+코드
+functionsolution(s){
+    letstr= s.toLowerCase();
+    letcount = 0 
+      for(leti = 0; i <s.length; i++){
+        if(str[i]==="p") count++;
+        else if(str[i]=== "y") count--
+    }
+    return count === 0? true: false
+}
+딴 사람 풀이
+functionnumPY(s){
+    return s.toUpperCase().split("P").length === s.toUpperCase().split("Y").length;
+}
+해석
+대소문자 상관없어서 toLowerCase()로 다 소문자로 만들어주고, 반복문을 돌린다.
+p가 있으면 1을 더하고 y가 있으면 1을 빼서 마지막에 count값이 0이라면 트루이고, 아니면 false이다. 
+ 
+한줄평
+한줄로 가능한 코드!! 머릿속이 신기하닷..
+
+
+
+
+
+
+
